@@ -12,42 +12,71 @@ const mockPriceData = [
 ];
 
 const mockBeatsData = [
-  { month: "Jan", beatstars: 45, soundcloud: 30, bandcamp: 25 },
-  { month: "Feb", beatstars: 52, soundcloud: 34, bandcamp: 28 },
-  { month: "Mar", beatstars: 48, soundcloud: 38, bandcamp: 32 },
-  { month: "Apr", beatstars: 55, soundcloud: 42, bandcamp: 35 },
-  { month: "May", beatstars: 59, soundcloud: 45, bandcamp: 38 },
-  { month: "Jun", beatstars: 65, soundcloud: 48, bandcamp: 42 }
+  { 
+    month: "Jan",
+    beatstars: 120,
+    soundcloud: 85,
+    bandcamp: 45
+  },
+  {
+    month: "Feb",
+    beatstars: 150,
+    soundcloud: 95,
+    bandcamp: 60
+  },
+  {
+    month: "Mar",
+    beatstars: 180,
+    soundcloud: 110,
+    bandcamp: 75
+  },
+  {
+    month: "Apr",
+    beatstars: 200,
+    soundcloud: 130,
+    bandcamp: 90
+  },
+  {
+    month: "May",
+    beatstars: 250,
+    soundcloud: 160,
+    bandcamp: 110
+  },
+  {
+    month: "Jun",
+    beatstars: 300,
+    soundcloud: 190,
+    bandcamp: 140
+  }
 ];
 
 export default function PriceTracker() {
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4">
-        <motion.div 
+    <section id="price-tracker" className="py-16 px-4">
+      <div className="container mx-auto">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="space-y-8"
         >
           <Card>
             <CardHeader>
-              <CardTitle>Token Price History</CardTitle>
+              <CardTitle>ROCKCOIN Price Chart</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px]">
+              <div className="h-[300px] mt-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={mockPriceData}>
                     <XAxis dataKey="date" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
                     <Line 
                       type="monotone" 
                       dataKey="price" 
                       stroke="hsl(var(--primary))" 
                       strokeWidth={2}
-                      dot={{ fill: "hsl(var(--primary))" }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -60,7 +89,7 @@ export default function PriceTracker() {
               <CardTitle>Beat Sales Across Platforms</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px]">
+              <div className="h-[300px] mt-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={mockBeatsData}>
                     <XAxis dataKey="month" />
